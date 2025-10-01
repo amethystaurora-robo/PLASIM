@@ -456,7 +456,6 @@
       real :: sum_atl(3) = 0.0
       integer :: count_atl = 0
 
-
 !     common /lsgtop/
 !     -----------------------------------------------------------------
 !     depth     depth of the bottom in u-points (m).
@@ -4913,6 +4912,11 @@
 !
       real :: flxdeep(ien,jen) 
       real :: zsst(ien,jen),zmld(ien,jen)
+
+!     Add variables to find current year and get yearly averages
+!     Amethyst, 2025
+      integer :: ksynt, kcdat, kctim, year_now
+      real    :: avg_atl(3)
 !
 !
 !*    1. Executing the program.
@@ -5173,6 +5177,7 @@
 !     calculate yearly ATL max averages and add to new file
 !     Added by Amethyst, 2025
 !
+ksynt = mod(nt-1, ntyear) + 1
 if (ksynt == ntyear) then
    if (count_atl > 0) then
       avg_atl(:) = sum_atl(:) / real(count_atl)
@@ -9503,5 +9508,6 @@ end if
 !!FL    
 
  
+
 
 
