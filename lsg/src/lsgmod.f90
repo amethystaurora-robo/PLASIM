@@ -4915,7 +4915,7 @@
 
 !     Add variables to find current year and get yearly averages
 !     Amethyst, 2025
-      integer :: year_now,kt_year
+      integer :: year_now,ktyear
       real    :: avg_atl(3)
 !
 !
@@ -9509,6 +9509,7 @@ end if
 !!FL    
 
  
+
 
 
 
