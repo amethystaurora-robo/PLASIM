@@ -451,6 +451,11 @@
       integer :: ntback = 120
       integer :: ntsurf =   1
 
+!     common /lsgstep/
+!     counting, sum variables for yearly averages, Amethyst 2025
+      real :: sum_atl(3) = 0.0
+      integer :: count_atl = 0
+
 
 !     common /lsgtop/
 !     -----------------------------------------------------------------
@@ -5165,6 +5170,24 @@
         nddr(7)=-1 ! kctim
         ksynt=mod(nt-1,ntyear)+1
 !
+!     calculate yearly ATL max averages and add to new file
+!     Added by Amethyst, 2025
+!
+if (ksynt == ntyear) then
+   if (count_atl > 0) then
+      real :: avg_atl(3)
+      avg_atl(:) = sum_atl(:) / real(count_atl)
+
+      open(unit=777, file='atl_max_yearly.txt', status='unknown', action='write', position='append')
+      write(777,'(i6,3f14.5)') ktyear, avg_atl(1), avg_atl(2), avg_atl(3)
+      close(777)
+
+      ! reset for next year
+      sum_atl(:) = 0.0
+      count_atl = 0
+   end if
+end if
+!
 ! write out where the model is at end of each step:
 !
 !        open  (37,file='run_status_LSG',status='replace')
@@ -6481,6 +6504,12 @@
       phiout(10)=-phimin1(2)*1.0e-6
       phiout(11)=-phimin2(2)*1.0e-6
       phiout(12)=-phimin3(2)*1.0e-6
+!     add yearly averages of phiout, Amethyst 2025
+      sum_atl(1) = sum_atl(1) + phiout(4)   ! 66–46N
+      sum_atl(2) = sum_atl(2) + phiout(5)   ! 16–44N
+      sum_atl(3) = sum_atl(3) + phiout(6)   ! 30S
+      count_atl = count_atl + 1
+      
       write (no6,*)                                                     &
      &   "  MOC below 700m at         66-46N        16-44N          30S"
       write (no6,9711) "ATL max (NADW)   :",(phiout(i),i=4,6)
@@ -9475,3 +9504,4 @@
 !!FL    
 
  
+
