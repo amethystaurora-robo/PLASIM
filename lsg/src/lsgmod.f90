@@ -4915,7 +4915,7 @@
 
 !     Add variables to find current year and get yearly averages
 !     Amethyst, 2025
-      integer :: ksynt, kcdat, kctim, year_now
+      integer :: year_now
       real    :: avg_atl(3)
 !
 !
@@ -5178,6 +5178,7 @@
 !     Added by Amethyst, 2025
 !
 ksynt = mod(nt-1, ntyear) + 1
+ktyear = (nt-1) / ntyear + 1
 if (ksynt == ntyear) then
    if (count_atl > 0) then
       avg_atl(:) = sum_atl(:) / real(count_atl)
@@ -9508,6 +9509,7 @@ end if
 !!FL    
 
  
+
 
 
 
