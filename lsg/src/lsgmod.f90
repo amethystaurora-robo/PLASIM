@@ -5175,7 +5175,6 @@
 !
 if (ksynt == ntyear) then
    if (count_atl > 0) then
-      real :: avg_atl(3)
       avg_atl(:) = sum_atl(:) / real(count_atl)
 
       open(unit=777, file='atl_max_yearly.txt', status='unknown', action='write', position='append')
@@ -9504,4 +9503,5 @@ end if
 !!FL    
 
  
+
 
