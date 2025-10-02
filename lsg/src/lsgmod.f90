@@ -5183,7 +5183,7 @@ if (ksynt == ntyear) then
       avg_atl(:) = sum_atl(:) / count_atl
 
       open(unit=777, file='atl_max_yearly.txt', status='unknown', action='write', position='append')
-      write(777,'(3f14.5)') avg_atl(1), avg_atl(2), avg_atl(3)
+      write(777,'(3f25.16)') avg_atl(1), avg_atl(2), avg_atl(3)
       close(777)
 
       ! reset for next year
@@ -9508,6 +9508,7 @@ end if
 !!FL    
 
  
+
 
 
 
