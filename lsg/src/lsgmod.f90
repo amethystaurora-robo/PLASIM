@@ -453,8 +453,8 @@
 
 !     common /lsgstep/
 !     counting, sum variables for yearly averages, Amethyst 2025
-      real :: sum_atl(3) = 0.0
-      integer :: count_atl = 0
+      DOUBLE PRECISION :: sum_atl(3) = 0.0d0
+      DOUBLE PRECISION :: count_atl = 0.0d0
 
 !     common /lsgtop/
 !     -----------------------------------------------------------------
@@ -4916,7 +4916,7 @@
 !     Add variables to find current year and get yearly averages
 !     Amethyst, 2025
       integer :: year_now,ktyear
-      real    :: avg_atl(3)
+      DOUBLE PRECISION   :: avg_atl(3)
 !
 !
 !*    1. Executing the program.
@@ -9508,6 +9508,7 @@ end if
 !!FL    
 
  
+
 
 
 
