@@ -5178,10 +5178,9 @@
 !     Added by Amethyst, 2025
 !
 ksynt = mod(nt-1, ntyear) + 1
-ktyear = (nt-1) / ntyear + 1
 if (ksynt == ntyear) then
    if (count_atl > 0) then
-      avg_atl(:) = sum_atl(:) / ntyear
+      avg_atl(:) = sum_atl(:) / count_atl
 
       open(unit=777, file='atl_max_yearly.txt', status='unknown', action='write', position='append')
       write(777,'(3f14.5)') avg_atl(1), avg_atl(2), avg_atl(3)
@@ -9509,6 +9508,7 @@ end if
 !!FL    
 
  
+
 
 
 
