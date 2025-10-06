@@ -5179,7 +5179,7 @@
 !
 !which timestep of the year we are in currently
 ksynt = mod(nt-1, ntyear) + 1
-if (ksynt == ntyear) then
+if (ksynt == ntyear+1) then
    if (count_atl > 0) then
       avg_atl(:) = sum_atl(:) / count_atl
       print '(A, F20.12)',"Avg this year:", avg_atl(1)
@@ -9511,6 +9511,7 @@ end if
 !!FL    
 
  
+
 
 
 
