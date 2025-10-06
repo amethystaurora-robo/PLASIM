@@ -5173,26 +5173,7 @@
         nddr(8)=-1 ! kcdat
         nddr(7)=-1 ! kctim
         ksynt=mod(nt-1,ntyear)+1
-!
-!     calculate yearly ATL max averages and add to new file
-!     Added by Amethyst, 2025
-!
-!which timestep of the year we are in currently
-ksynt = mod(nt-1, ntyear) + 1
-if (ksynt == ntyear+1) then
-   if (count_atl > 0) then
-      avg_atl(:) = sum_atl(:) / count_atl
-      print '(A, F20.12)',"Avg this year:", avg_atl(1)
 
-      open(unit=777, file='atl_max_yearly.txt', status='unknown', action='write', position='append')
-      write(777,'(3f25.16)') avg_atl(1), avg_atl(2), avg_atl(3)
-      close(777)
-
-      ! reset for next year
-      sum_atl(:) = 0.0
-      count_atl = 0
-   end if
-end if
 !
 ! write out where the model is at end of each step:
 !
@@ -6516,6 +6497,26 @@ end if
       sum_atl(2) = sum_atl(2) + phiout(5)   ! 16–44N
       sum_atl(3) = sum_atl(3) + phiout(6)   ! 30S
       count_atl = count_atl + 1
+
+!
+!     calculate yearly ATL max averages and add to new file
+!     Added by Amethyst, 2025
+!
+!which timestep of the year we are in currently
+if (nt == ntyear) then
+   if (count_atl > 0) then
+      avg_atl(:) = sum_atl(:) / count_atl
+      print '(A, F20.12)',"Avg this year:", avg_atl(1)
+
+      open(unit=777, file='atl_max_yearly.txt', status='unknown', action='write', position='append')
+      write(777,'(3f25.16)') avg_atl(1), avg_atl(2), avg_atl(3)
+      close(777)
+
+      ! reset for next year
+      sum_atl(:) = 0.0
+      count_atl = 0
+   end if
+end if
       
       write (no6,*)                                                     &
      &   "  MOC below 700m at         66-46N        16-44N          30S"
@@ -9511,6 +9512,7 @@ end if
 !!FL    
 
  
+
 
 
 
