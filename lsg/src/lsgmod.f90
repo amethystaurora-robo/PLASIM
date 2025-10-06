@@ -6492,7 +6492,6 @@
       phiout(12)=-phimin3(2)*1.0e-6
 !     add yearly averages of phiout, Amethyst 2025
       sum_atl(1) = sum_atl(1) + phiout(4)   ! 66–46N
-      print '(A, F20.12)', "Sum so far:",sum_atl(1)
       sum_atl(2) = sum_atl(2) + phiout(5)   ! 16–44N
       sum_atl(3) = sum_atl(3) + phiout(6)   ! 30S
       count_atl = count_atl + 1
@@ -6501,11 +6500,9 @@
 !     calculate yearly ATL max averages and add to new file
 !     Added by Amethyst, 2025
 !
-!which timestep of the year we are in currently
 if (nt == ntyear) then
    if (count_atl > 0) then
       avg_atl(:) = sum_atl(:) / count_atl
-      print '(A, F20.12)',"Avg this year:", avg_atl(1)
 
       open(unit=777, file='atl_max_yearly.txt', status='unknown', action='write', position='append')
       write(777,'(3f25.16)') avg_atl(1), avg_atl(2), avg_atl(3)
@@ -9511,6 +9508,7 @@ end if
 !!FL    
 
  
+
 
 
 
