@@ -6230,7 +6230,6 @@
 
 !     Add variables to find current year and get yearly averages
 !     Amethyst, 2025
-      integer :: year_now,ktyear
       DOUBLE PRECISION   :: avg_atl(3)
 !
 !*    1.        Set initial constants.
@@ -9512,6 +9511,7 @@ end if
 !!FL    
 
  
+
 
 
 
